@@ -2,6 +2,7 @@
     "name": "UserStory",
     "version": "0.0.1",
     "dependencies": {
+        "underscore": "*",
         "jasmine-node": "*"
     }
 }
