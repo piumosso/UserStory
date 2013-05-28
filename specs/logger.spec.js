@@ -2,39 +2,39 @@ var Logger = require('../lib/Logger').Logger;
 
 
 describe('Logger without restrictions', function(){
-    var sayMock = jasmine.createSpy(),
+    var doyMock = jasmine.createSpy(),
         logger = new Logger({
-            say: sayMock
+            do: doyMock
         });
 
     it('should tell all logs', function(){
         logger.log('Hi!', 'app.section');
-        expect(sayMock).toHaveBeenCalledWith('Hi!', 'app.section');
+        expect(doyMock).toHaveBeenCalledWith('Hi!', 'app.section');
     });
 });
 
 
 describe('Logger with restrictions', function(){
-    var sayMock = jasmine.createSpy(),
+    var doMock = jasmine.createSpy(),
         logger = new Logger({
-            say: sayMock,
-            tell: ['a.b', 'k', 'k.l'],
-            shutUp: ['a.b.c', 'k', 'x']
+            do: doMock,
+            on: ['a.b', 'k', 'k.l'],
+            off: ['a.b.c', 'k', 'x']
         });
 
-    it('should tell only allowed logs except sections in shutUp', function(){
-        logger.log('Msg', 'a.b');
-        expect(sayMock).toHaveBeenCalled();
-        logger.log('Msg', 'a.b.d');
-        expect(sayMock).toHaveBeenCalled();
-        logger.log('Msg', 'a.b.c');
-        expect(sayMock).not.toHaveBeenCalled();
+    it('should tell only on-logs except off-sections', function(){
+        logger.log('', 'a.b');
+        expect(doMock).toHaveBeenCalled();
+        logger.log('', 'a.b.d');
+        expect(doMock).toHaveBeenCalled();
+        logger.log('', 'a.b.c');
+        expect(doMock).not.toHaveBeenCalled();
     });
 
-    it('should not tell shutUp logs', function(){
-        logger.log('Msg', 'k');
-        expect(sayMock).not.toHaveBeenCalled();
-        logger.log('Msg', 'k.l');
-        expect(sayMock).not.toHaveBeenCalled();
+    it('should not tell off logs', function(){
+        logger.log('', 'k');
+        expect(doMock).not.toHaveBeenCalled();
+        logger.log('', 'k.l');
+        expect(doMock).not.toHaveBeenCalled();
     });
 });
