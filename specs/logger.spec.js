@@ -2,39 +2,39 @@ var Logger = require('../lib/Logger').Logger;
 
 
 describe('Logger without restrictions', function(){
-    var doyMock = jasmine.createSpy(),
-        logger = new Logger({
-            do: doyMock
-        });
+    var logger = new Logger();
 
     it('should tell all logs', function(){
-        logger.log('Hi!', 'app.section');
-        expect(doyMock).toHaveBeenCalledWith('Hi!', 'app.section');
+        expect(logger.isAllowed('app.section')).toBeTruthy();
     });
 });
 
 
 describe('Logger with restrictions', function(){
-    var doMock = jasmine.createSpy(),
-        logger = new Logger({
-            do: doMock,
+    var logger = new Logger({
             on: ['a.b', 'k', 'k.l'],
             off: ['a.b.c', 'k', 'x']
         });
 
     it('should tell only on-logs except off-sections', function(){
-        logger.log('', 'a.b');
-        expect(doMock).toHaveBeenCalled();
-        logger.log('', 'a.b.d');
-        expect(doMock).toHaveBeenCalled();
-        logger.log('', 'a.b.c');
-        expect(doMock).not.toHaveBeenCalled();
+        expect(logger.isAllowed('a.b')).toBeTruthy();
+        expect(logger.isAllowed('a.b.d')).toBeTruthy();
+        expect(logger.isAllowed('a.b.c')).toBeFalsy();
     });
 
     it('should not tell off logs', function(){
-        logger.log('', 'k');
-        expect(doMock).not.toHaveBeenCalled();
-        logger.log('', 'k.l');
-        expect(doMock).not.toHaveBeenCalled();
+        expect(logger.isAllowed('k')).toBeFalsy();
+        expect(logger.isAllowed('k.l')).toBeFalsy();
+    });
+});
+
+
+describe('Logger().sectionToSubSections method', function(){
+    var logger = new Logger();
+
+    it('should make correct arrays with section sub parts', function(){
+        expect(logger.sectionToSubSections('')).toEqual(['']);
+        expect(logger.sectionToSubSections('a')).toEqual(['a']);
+        expect(logger.sectionToSubSections('a.b.c')).toEqual(['a', 'a.b', 'a.b.c']);
     });
 });
