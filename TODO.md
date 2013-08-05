@@ -10,6 +10,9 @@
 
 2. Parse
 
+* https://github.com/mishoo/UglifyJS
+* https://npmjs.org/package/esprima
+
 
         user-story parse {input} {output}
         // Tra-ta ta-ta @a.b
