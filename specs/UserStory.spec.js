@@ -1,4 +1,4 @@
-var UserStory = require('../lib/UserStory').UserStory;
+var UserStory = require('../lib/UserStory');
 
 
 describe('UserStory without restrictions', function () {
