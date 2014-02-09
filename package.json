@@ -3,7 +3,9 @@
     "version": "0.0.1",
     "dependencies": {
         "underscore": "*",
-        "jasmine-node": "*",
-        "commander": "2.1.0s"
+        "commander": "2.1.0"
+    },
+    "devDependencies": {
+        "jasmine-node": "*"
     }
 }
