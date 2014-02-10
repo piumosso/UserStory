@@ -7,6 +7,6 @@ node_js:
   - "0.6"
 
 before_script:
-  - "npm i -g jasmine-node && npm install -g istanbul"
+  - "npm -g jasmine-node && npm install -g istanbul"
 after_success:
-  - "istanbul cover jasmine-node --captureExceptions specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  - "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node --captureExceptions specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
