@@ -8,3 +8,5 @@ node_js:
 
 before_script:
   - "npm i -g jasmine-node"
+after_success:
+  - "./node_modules/istanbul/lib/cli.js cover jasmine-node --captureExceptions specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
