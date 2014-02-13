@@ -15,9 +15,32 @@ describe('UserStoryUserStoryParser', function(){
     });
 
     it('should parse comment in line', function(){
-        expect(UserStoryParser.parse('123h hgfhf123gf gf323gf ')).toBe(null);
-        expect(UserStoryParser.parse('123h hgfhf123gf gf323gf // fds hgfdhsga ')).toBe(null);
-        expect(UserStoryParser.parse('jhgjhg //   @a.b.c')).toEqual(['jhgjhg ', '', 'a.b.c']);
-        expect(UserStoryParser.parse('jhgjhg // @a //@a.b.c')).toEqual(['jhgjhg // @a ', '', 'a.b.c']);
+        expect(UserStoryParser.parseLine('123h hgfhf123gf gf323gf ')).toBe(null);
+        expect(UserStoryParser.parseLine('123h hgfhf123gf gf323gf // fds hgfdhsga ')).toBe(null);
+        expect(UserStoryParser.parseLine('jhgjhg //   @a.b.c')).toEqual(['jhgjhg ', '', 'a.b.c']);
+        expect(UserStoryParser.parseLine('jhgjhg // @a //@a.b.c')).toEqual(['jhgjhg // @a ', '', 'a.b.c']);
+    });
+
+    it('should insert UserStory.log into js-script', function(){
+        expect(
+            UserStoryParser.parse(
+                'function test(){\n' +
+                '    // bar @foo.bar\n' +
+                '    return null;\n' +
+                '}\n' +
+                '\n' +
+                '// Run test @foo\n' +
+                'test();', {
+                    loggerName: 'UserStory.log'
+                })
+        ).toEqual(
+            'function test(){\n' +
+            '    UserStory.log(\'bar\', \'foo.bar\');\n' +
+            '    return null;\n' +
+            '}\n' +
+            '\n' +
+            'UserStory.log(\'Run test\', \'foo\');\n' +
+            'test();'
+        );
     });
 });
