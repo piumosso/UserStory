@@ -4,15 +4,15 @@
 [![NPM](https://nodei.co/npm/user-story.png)](https://nodei.co/npm/user-story/)
 
 
-# UserStory — client-side logger
+# UserStory v0.0.2 — client-side logger
 
 ![](example/example.png?raw=true)
 
 
-## Usage
+## Installation
 
 
-### Install
+### NPM
 
 ```bash
 npm install user-story
@@ -32,4 +32,38 @@ cat input.js | ./node_modules/user-story/bin/us > output.js
 <script type="text/javascript" src="underscore.js"></script>
 <script type="text/javascript" src="UserStory.js"></script>
 <script type="text/javascript" src="output.js"></script>
+```
+
+
+## Usage
+
+
+Configure UserStory after script loading:
+
+```xml
+<script type="text/javascript" src="UserStory.js"></script>
+<script type="text/javascript">
+    UserStory.configure({
+        on: ['*'],
+        off: ['foo.bar'],
+        logger: function (message, section){
+            console.log('My custon log', message, section);
+        }
+    });
+</script>
+```
+
+or type in console:
+
+
+```javascript
+UserStory.on('*');
+```
+
+```javascript
+UserStory.off('foo.bar');
+```
+
+```javascript
+UserStory.reset();
 ```
