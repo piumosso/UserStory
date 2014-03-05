@@ -21,6 +21,14 @@ describe('UserStoryUserStoryParser', function(){
         expect(UserStoryParser.parseLine('jhgjhg // @a //@a.b.c')).toEqual(['jhgjhg // @a ', '', 'a.b.c']);
     });
 
+    it('should not parse comment in line that ends with a comma', function(){
+        expect(UserStoryParser.parseLine('	flashUrl: 0, // @default: "./FileAPI.flash.swf"')).toBe(null);
+    });
+
+    it('should not parse comment in jsdoc', function(){
+        expect(UserStoryParser.parseLine('   @param  options  string - a command')).toBe(null);
+    });
+
     it('should insert UserStory.log into js-script', function(){
         expect(
             UserStoryParser.parse(
