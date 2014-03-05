@@ -62,3 +62,61 @@ describe('UserStory.sectionToSubSections method', function () {
         expect(us.sectionToSubSections('a.b.c')).toEqual(['a', 'a.b', 'a.b.c']);
     });
 });
+
+
+describe('UserStory.on method', function () {
+    it('should allow single section', function () {
+        var us;
+
+        us = new UserStory();
+        us.on('a.b');
+        expect(us.isAllowed('a.b')).toBeTruthy();
+        expect(us.isAllowed('xxx')).toBeFalsy();
+    });
+    it('should allow multiple sections', function () {
+        var us;
+
+        us = new UserStory();
+        us.on(['a.b', 'q.w']);
+        expect(us.isAllowed('a.b')).toBeTruthy();
+        expect(us.isAllowed('q.w')).toBeTruthy();
+        expect(us.isAllowed('xxx')).toBeFalsy();
+    });
+});
+
+
+describe('UserStory.off method', function () {
+    it('should disable single section', function () {
+        var us;
+
+        us = new UserStory();
+        us.on('a.b');
+        us.off('a.b.c');
+        expect(us.isAllowed('a.b')).toBeTruthy();
+        expect(us.isAllowed('a.b.c')).toBeFalsy();
+    });
+    it('should disable multiple sections', function () {
+        var us;
+
+        us = new UserStory();
+        us.on('a.b');
+        us.off(['a.b.c', 'w']);
+        expect(us.isAllowed('a.b')).toBeTruthy();
+        expect(us.isAllowed('a.b.c')).toBeFalsy();
+        expect(us.isAllowed('w')).toBeFalsy();
+    });
+});
+
+
+describe('UserStory.reset method', function () {
+    it('should clean allowed and disabled sections', function () {
+        var us;
+
+        us = new UserStory();
+        us.on('a.b');
+        us.off('a.b.c');
+        us.reset();
+        expect(us.isAllowed('a.b')).toBeFalsy();
+        expect(us.isAllowed('a.b.c')).toBeFalsy();
+    });
+});
