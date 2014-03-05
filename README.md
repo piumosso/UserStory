@@ -4,7 +4,7 @@
 [![NPM](https://nodei.co/npm/user-story.png)](https://nodei.co/npm/user-story/)
 
 
-# UserStory v0.0.3 — client-side logger
+# UserStory v0.0.4 — client-side logger
 
 ![](example/example.png?raw=true)
 
