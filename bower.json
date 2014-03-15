@@ -1,0 +1,23 @@
+{
+    "name": "UserStory",
+    "version": "0.0.4",
+    "homepage": "https://github.com/piumosso/UserStory",
+    "authors": [
+        "piumosso <golikoffartem@gmail.com>"
+    ],
+    "description": "Clientside logger",
+    "main": "lib/UserStory.js",
+    "keywords": [
+        "UserStory",
+        "logger"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "specs",
+        "bin",
+        "example"
+    ]
+}
