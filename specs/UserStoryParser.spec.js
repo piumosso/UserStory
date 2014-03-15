@@ -21,6 +21,10 @@ describe('UserStoryUserStoryParser', function(){
         expect(UserStoryParser.parseLine('jhgjhg // @a //@a.b.c')).toEqual(['jhgjhg // @a ', '', 'a.b.c']);
     });
 
+    it('should parse string with quotes correct', function(){
+        expect(UserStoryParser.parseLine('// xxx \'yyy\' "zzz" @a.b.c')).toEqual(['', 'xxx \\\'yyy\\\' "zzz"', 'a.b.c']);
+    });
+
     it('should not parse comment in line that ends with a comma', function(){
         expect(UserStoryParser.parseLine('	flashUrl: 0, // @default: "./FileAPI.flash.swf"')).toBe(null);
     });

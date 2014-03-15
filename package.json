@@ -1,6 +1,6 @@
 {
     "name": "user-story",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Clientside logger",
     "author": {
         "name": "Artem Golikov",

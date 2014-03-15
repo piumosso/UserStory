@@ -1,6 +1,6 @@
 {
     "name": "UserStory",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "homepage": "https://github.com/piumosso/UserStory",
     "authors": [
         "piumosso <golikoffartem@gmail.com>"
@@ -14,10 +14,16 @@
     "license": "MIT",
     "ignore": [
         "**/.*",
+        "lib/UserStoryParser.js",
         "node_modules",
         "bower_components",
         "specs",
         "bin",
-        "example"
+        "example",
+        ".bower.json",
+        "bower.json",
+        "LICENSE",
+        "package.json",
+        "README.md"
     ]
 }
