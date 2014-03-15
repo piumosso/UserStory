@@ -12,10 +12,11 @@
 ## Installation
 
 
-### NPM
+Install backend && frontend
 
 ```bash
 npm install user-story
+bower install UserStory
 ```
 
 
