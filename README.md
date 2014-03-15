@@ -12,7 +12,7 @@
 ## Installation
 
 
-Install backend && frontend
+### Install backend && frontend
 
 ```bash
 npm install user-story
@@ -42,7 +42,7 @@ cat input.js | ./node_modules/user-story/bin/us > output.js
 Configure UserStory after script loading:
 
 ```xml
-<script type="text/javascript" src="UserStory.js"></script>
+<script type="text/javascript" src="bower_components/UserStory/lib/UserStory.js"></script>
 <script type="text/javascript">
     UserStory.configure({
         on: ['*'],
