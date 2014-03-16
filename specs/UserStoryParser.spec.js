@@ -34,25 +34,25 @@ describe('UserStoryUserStoryParser', function(){
     });
 
     it('should insert UserStory.log into js-script', function(){
-        expect(
-            UserStoryParser.parse(
-                'function test(){\n' +
-                '    // bar @foo.bar\n' +
-                '    return null;\n' +
-                '}\n' +
-                '\n' +
-                '// Run test @foo\n' +
-                'test();', {
-                    loggerName: 'UserStory.log'
-                })
-        ).toEqual(
-            'function test(){\n' +
-            '    UserStory.log(\'bar\', \'foo.bar\');\n' +
-            '    return null;\n' +
-            '}\n' +
-            '\n' +
-            'UserStory.log(\'Run test\', \'foo\');\n' +
-            'test();'
-        );
+        var src,
+            dst;
+
+        src = 'function test(){\n' +
+               '    // bar @foo.bar\n' +
+               '    return null;\n' +
+               '}\n' +
+               '\n' +
+               '// Run test @foo\n' +
+               'test();';
+        dst = 'function test(){\n' +
+               '    UserStory.log(\'bar\', \'foo.bar\');\n' +
+               '    return null;\n' +
+               '}\n' +
+               '\n' +
+               'UserStory.log(\'Run test\', \'foo\');\n' +
+               'test();'
+
+        expect(UserStoryParser.parse(src)).toEqual(dst);
+        expect(UserStoryParser.parse(src, {loggerName: 'UserStory.log'})).toEqual(dst);
     });
 });
