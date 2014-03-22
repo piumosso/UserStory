@@ -1,8 +1,8 @@
-function test(){
-    UserStory.log(["bar"], ["foo.bar"]);
-    return null;
+function test(x){
+    UserStory.log(["Test call with [x=", x, "]"], ["example.test"]);
+    return x * 5;
 }
 
-UserStory.log(["Run test"], ["foo"]);
-test();
+UserStory.log(["Run test"], ["example"]);
+test(5);
 

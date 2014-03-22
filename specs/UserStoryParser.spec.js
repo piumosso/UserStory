@@ -10,16 +10,23 @@ describe('UserStoryParser.parseComment', function(){
 
     it('should return text and sections on strings with sections', function(){
         expect(UserStoryParser.parseComment('@a.b.c')).toEqual({
-            messageParts: [''],
+            messageParts: ['""'],
             sections: ['a.b.c']
         });
         expect(UserStoryParser.parseComment('@a.b.c  @d.e')).toEqual({
-            messageParts: [''],
+            messageParts: ['""'],
             sections: ['a.b.c', 'd.e']
         });
         expect(UserStoryParser.parseComment('w@123 test string @ac @b')).toEqual({
-            messageParts: ['w@123 test string'],
+            messageParts: ['"w@123 test string"'],
             sections: ['ac', 'b']
+        });
+    });
+
+    it('should parse comment with []', function(){
+        expect(UserStoryParser.parseComment('Test [x] [[1,2,3]] end @a')).toEqual({
+            messageParts: ['"Test [x="', 'x', '"] [[1,2,3]="', '[1,2,3]', '"] end"'],
+            sections: ['a']
         });
     });
 });
@@ -31,12 +38,12 @@ describe('UserStoryParser.parseLine', function(){
         expect(UserStoryParser.parseLine('123h hgfhf123gf gf323gf // fds hgfdhsga ')).toBe(null);
         expect(UserStoryParser.parseLine('jhgjhg //   @a.b.c')).toEqual({
             line: 'jhgjhg ',
-            messageParts: [''],
+            messageParts: ['""'],
             sections: ['a.b.c']
         });
         expect(UserStoryParser.parseLine('jhgjhg // @a //@a.b.c')).toEqual({
             line: 'jhgjhg // @a ',
-            messageParts: [''],
+            messageParts: ['""'],
             sections: ['a.b.c']
         });
     });
@@ -44,7 +51,7 @@ describe('UserStoryParser.parseLine', function(){
     it('should parse string with quotes correct', function(){
         expect(UserStoryParser.parseLine('// xxx \'yyy\' "zzz" @a.b.c')).toEqual({
             line: '',
-            messageParts: ['xxx \'yyy\' \\"zzz\\"'],
+            messageParts: ['"xxx \'yyy\' \\"zzz\\""'],
             sections: ['a.b.c']
         });
     });
@@ -64,20 +71,20 @@ describe('UserStoryParser.parse', function(){
         var src,
             dst;
 
-        src = 'function test(){\n' +
-               '    // bar @foo.bar\n' +
-               '    return null;\n' +
+        src = 'function test(x){\n' +
+               '    // Test call with [x] @example.test\n' +
+               '    return x * 5;\n' +
                '}\n' +
                '\n' +
-               '// Run test @foo\n' +
-               'test();';
-        dst = 'function test(){\n' +
-               '    UserStory.log(["bar"], ["foo.bar"]);\n' +
-               '    return null;\n' +
+               '// Run test @example\n' +
+               'test(5);';
+        dst = 'function test(x){\n' +
+               '    UserStory.log(["Test call with [x=", x, "]"], ["example.test"]);\n' +
+               '    return x * 5;\n' +
                '}\n' +
                '\n' +
-               'UserStory.log(["Run test"], ["foo"]);\n' +
-               'test();'
+               'UserStory.log(["Run test"], ["example"]);\n' +
+               'test(5);'
 
         expect(UserStoryParser.parse(src)).toEqual(dst);
         expect(UserStoryParser.parse(src, {loggerName: 'UserStory.log'})).toEqual(dst);

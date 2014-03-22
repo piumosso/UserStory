@@ -1,8 +1,8 @@
-function test(){
-    // bar @foo.bar
-    return null;
+function test(x){
+    // Test call with [x] @example.test
+    return x * 5;
 }
 
-// Run test @foo
-test();
+// Run test @example
+test(5);
 
