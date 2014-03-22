@@ -1,8 +1,8 @@
 function test(){
-    UserStory.log('bar', 'foo.bar');
+    UserStory.log(["bar"], ["foo.bar"]);
     return null;
 }
 
-UserStory.log('Run test', 'foo');
+UserStory.log(["Run test"], ["foo"]);
 test();
 

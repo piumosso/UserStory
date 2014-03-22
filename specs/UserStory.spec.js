@@ -64,6 +64,38 @@ describe('UserStory.sectionToSubSections method', function () {
 });
 
 
+describe('Logging method', function(){
+    var us;
+
+    us = new UserStory({
+        on: ['a.b', 'k']
+    });
+
+    beforeEach(function(){
+        us.configure({
+            logger: jasmine.createSpy('logger')
+        });
+    });
+
+    it('should be called with one allowed section', function(){
+        us.log(['message'], ['a.b']);
+        expect(us.options.logger).toHaveBeenCalledWith(['message'], ['a.b']);
+    });
+    it('should be called with several sections, including all allowed', function(){
+        us.log(['message'], ['a.b', 'k']);
+        expect(us.options.logger).toHaveBeenCalledWith(['message'], ['a.b', 'k']);
+    });
+    it('should be called with several sections, one of whom is disabled', function(){
+        us.log(['message'], ['x', 'k']);
+        expect(us.options.logger).toHaveBeenCalledWith(['message'], ['x', 'k']);
+    });
+    it('should not be called with several sections, among which are all prohibited', function(){
+        us.log(['message'], ['x', 'y']);
+        expect(us.options.logger).not.toHaveBeenCalled();
+    });
+});
+
+
 describe('UserStory.on method', function () {
     it('should allow single section', function () {
         var us;
