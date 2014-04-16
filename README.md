@@ -48,7 +48,7 @@ Configure UserStory after script loading:
         on: ['*'],
         off: ['foo.bar'],
         logger: function (message, section){
-            console.log('My custon log', message, section);
+            console.log('My custom log', message, section);
         }
     });
 </script>
