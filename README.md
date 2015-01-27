@@ -6,7 +6,12 @@
 
 # UserStory v0.0.8 — client-side logger
 
+### [gulp-user-story](https://www.npmjs.com/package/gulp-user-story)
+### [grunt-user-story](https://www.npmjs.com/package/grunt-user-story)
 ![](https://raw.github.com/piumosso/UserStory/master/example/example.png)
+
+### [gulp-user-story](https://www.npmjs.com/package/gulp-user-story)
+### [grunt-user-story](https://www.npmjs.com/package/grunt-user-story)
 
 
 ## Installation
