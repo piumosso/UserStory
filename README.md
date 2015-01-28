@@ -4,13 +4,12 @@
 [![NPM](https://nodei.co/npm/user-story.png)](https://nodei.co/npm/user-story/)
 
 
-# UserStory v0.0.8 — client-side logger
-
-### [gulp-user-story](https://www.npmjs.com/package/gulp-user-story)
-### [grunt-user-story](https://www.npmjs.com/package/grunt-user-story)
+# UserStory v0.0.9 — client-side logger
 
 ![](https://raw.github.com/piumosso/UserStory/master/example/example.png)
 
+### [gulp-user-story](https://github.com/piumosso/gulp-user-story)
+### [grunt-user-story](https://github.com/piumosso/grunt-user-story)
 
 
 ## Installation
@@ -72,3 +71,11 @@ UserStory.off('foo.bar');
 ```javascript
 UserStory.reset();
 ```
+
+
+```javascript
+UserStory.only('foo.bar'); // Equivalent of UserStory.reset(); UserStory.on('foo.bar');
+```
+
+
+### [Пост про UserStory.js](http://piumosso.ru/projects/user-story/userstory-review/)

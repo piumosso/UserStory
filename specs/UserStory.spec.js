@@ -152,3 +152,21 @@ describe('UserStory.reset method', function () {
         expect(us.isAllowed('a.b.c')).toBeFalsy();
     });
 });
+
+
+
+describe('UserStory.only method', function () {
+    it('should clean allowed and disabled sections and set new allowed sections', function () {
+        var us;
+
+        us = new UserStory();
+        us.on('a.b');
+        us.off('a.b.c');
+        expect(us.isAllowed('x')).toBeFalsy();
+
+        us.only('x');
+        expect(us.isAllowed('a.b')).toBeFalsy();
+        expect(us.isAllowed('a.b.c')).toBeFalsy();
+        expect(us.isAllowed('x')).toBeTruthy();
+    });
+});
