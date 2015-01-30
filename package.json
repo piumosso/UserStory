@@ -1,6 +1,6 @@
 {
     "name": "user-story",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Clientside logger",
     "author": {
         "name": "Artem Golikov",
@@ -27,10 +27,10 @@
         "test": "jasmine-node specs"
     },
     "dependencies": {
-        "underscore": "*",
         "commander": "2.1.0"
     },
     "devDependencies": {
+        "underscore": "*",
         "jasmine-node": "*",
         "istanbul": "0.2.4",
         "coveralls": "2.7.1"
