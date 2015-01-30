@@ -154,7 +154,6 @@ describe('UserStory.reset method', function () {
 });
 
 
-
 describe('UserStory.only method', function () {
     it('should clean allowed and disabled sections and set new allowed sections', function () {
         var us;

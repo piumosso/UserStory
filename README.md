@@ -4,7 +4,7 @@
 [![NPM](https://nodei.co/npm/user-story.png)](https://nodei.co/npm/user-story/)
 
 
-# UserStory v0.0.9 — client-side logger
+# UserStory v0.0.10 — client-side logger
 
 ![](https://raw.github.com/piumosso/UserStory/master/example/example.png)
 
@@ -21,6 +21,18 @@
 npm install user-story
 bower install UserStory
 ```
+
+
+### Format logs
+
+```javascript
+... // Message @foo
+... // Message @foo @foo.bar @baz
+... // Message [x] @foo
+... // Message [`x] @foo
+```
+
+The last two examples show how to display variable, the last example displays the variables in the JSON.
 
 
 ### Parse scripts

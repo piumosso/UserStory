@@ -23,9 +23,16 @@ describe('UserStoryParser.parseComment', function(){
         });
     });
 
-    it('should parse comment with []', function(){
+    it('should parse comment with variables in []', function(){
         expect(UserStoryParser.parseComment('Test [x] [[1,2,3]] end @a')).toEqual({
             messageParts: ['"Test [x="', 'x', '"] [[1,2,3]="', '[1,2,3]', '"] end"'],
+            sections: ['a']
+        });
+    });
+
+    it('should parse comment with variables in [`] as JSON', function(){
+        expect(UserStoryParser.parseComment('Test [`x] end @a')).toEqual({
+            messageParts: ['"Test [x="', 'JSON.stringify(x)', '"] end"'],
             sections: ['a']
         });
     });
